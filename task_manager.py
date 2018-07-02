@@ -19,8 +19,8 @@ class QueueManager(BaseManager):
 QueueManager.register('get_task_queue', callable=lambda: task_queue)
 QueueManager.register('get_result_queue', callable=lambda: result_queue)
 # 绑定端口5000, 设置验证码'abc':
-authkey = str.encode('abc', encoding='utf-8')
-manager = QueueManager(address=('', 5000), authkey=authkey)
+server_addr = '127.0.0.1'
+manager = QueueManager(address=(server_addr, 5000), authkey=b'abd')
 # 启动Queue:
 manager.start()
 # 获得通过网络访问的Queue对象:
