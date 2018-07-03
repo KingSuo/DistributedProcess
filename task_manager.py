@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
-# taskmanager.py
+# task_manager.py
 
-import random, queue
+import random
+import queue
 from multiprocessing.managers import BaseManager
 
 # 发送任务的队列:
@@ -18,9 +19,8 @@ class QueueManager(BaseManager):
 # 把两个Queue都注册到网络上, callable参数关联了Queue对象:
 QueueManager.register('get_task_queue', callable=lambda: task_queue)
 QueueManager.register('get_result_queue', callable=lambda: result_queue)
-# 绑定端口5000, 设置验证码'abc':
-server_addr = '127.0.0.1'
-manager = QueueManager(address=(server_addr, 5000), authkey=b'abd')
+# 绑定端口5001, 设置验证码'abc':
+manager = QueueManager(address=('', 5001), authkey=b'abc')
 # 启动Queue:
 manager.start()
 # 获得通过网络访问的Queue对象:
